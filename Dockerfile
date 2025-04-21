@@ -1,11 +1,12 @@
-From node:20
+FROM node:20
 
 WORKDIR /app
 
-COPY . .
+COPY package*.json ./
+RUN npm install --production  # 仅安装生产依赖
 
-RUN npm install
+COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["node", "index.js"] 
